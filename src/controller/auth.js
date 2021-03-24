@@ -70,13 +70,3 @@ exports.signin = (req,res) => {
     })
 }
 
-//require sign in as a user
-
-exports.requireSignin = (req,res,next) =>{
-    const token = req.headers.authorization.split(" ")[1];
-    //verify the user
-    const user = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = user;
-     next();
-   // jwt.decode()
-}
