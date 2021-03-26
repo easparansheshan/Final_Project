@@ -8,6 +8,8 @@ const authRoutes = require ('./routes/auth.js');
 const adminRoutes = require ('./routes/admin/auth')
 const categoryRoutes = require ('./routes/category');
 const productRoutes = require ('./routes/product');
+//routes for cart add addItemToCart
+const cartRoutes = require ('./routes/cart');
 //define port
 env.config();
 
@@ -28,6 +30,7 @@ app.use('/api', authRoutes);
 app.use('/api', adminRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', productRoutes);
+app.use('/api', cartRoutes);
 
 
 app.listen(process.env.PORT, ()=>{
