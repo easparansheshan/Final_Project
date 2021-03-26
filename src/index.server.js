@@ -3,6 +3,7 @@ const env = require("dotenv")
 const app = express();
 //const bodyParser = require('body-parser');
 const mongoose = require ('mongoose')
+const path = require('path');
 //robustness
 const authRoutes = require ('./routes/auth.js');
 const adminRoutes = require ('./routes/admin/auth')
@@ -26,6 +27,7 @@ mongoose.connect(
 })
 //add middle ware
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'uploads')));
 app.use('/api', authRoutes);
 app.use('/api', adminRoutes);
 app.use('/api', categoryRoutes);
