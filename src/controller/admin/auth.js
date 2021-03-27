@@ -46,6 +46,7 @@ exports.signin = (req,res) => {
                 //create token
                 const token = jwt.sign({_id: user._id, role: user.role}, process.env.JWT_SECRET ,{expiresIn: '1h'})
                 const {firstName,lastName,email,role,fullName} = user;
+                res.cookie('token',token, {expiresIn: '1h'})
                 res.status(200).json({
                     token,
                     user: {
@@ -63,4 +64,14 @@ exports.signin = (req,res) => {
             })
         }
     })
+}
+
+exports.signout = (req,res) =>{
+
+    res.clearCookie('token');
+    res.status(200).json(
+        {
+            message: "Admin Signout Successfully"
+        }
+    )
 }
