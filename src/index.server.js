@@ -4,6 +4,7 @@ const app = express();
 //const bodyParser = require('body-parser');
 const mongoose = require ('mongoose')
 const path = require('path');
+const cors = require ('cors')
 //robustness
 const authRoutes = require ('./routes/auth.js');
 const adminRoutes = require ('./routes/admin/auth')
@@ -26,6 +27,7 @@ mongoose.connect(
     console.log("Database connected")
 })
 //add middle ware
+app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'uploads')));
 app.use('/api', authRoutes);
